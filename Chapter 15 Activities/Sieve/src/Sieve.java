@@ -1,4 +1,7 @@
 import java.util.Scanner;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Iterator;
 
 
 /**
@@ -12,9 +15,24 @@ public class Sieve
         System.out.println("Compute primes up to which integer?");
         int n = in.nextInt();
 
-        // Your work goes here
-        . . .
+        Set<Integer> numbers = new HashSet<>();
 
+        // Your work goes here
+        for (int i = 2; i < n; i++)
+        {
+            numbers.add(i);
+        }
+
+        Iterator<Integer> iterator = numbers.iterator();
+        int num2;
+
+        for (int x = 2; x < n/2; x++)
+        {
+            iterator = numbers.iterator();
+            num2 = iterator.next();
+            if(num2 %x==0 && !num2==x)
+                iterator.remove();
+        }
 
 
 
