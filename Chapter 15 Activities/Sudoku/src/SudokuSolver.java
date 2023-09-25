@@ -63,7 +63,39 @@ public class SudokuSolver {
             3 4 5
             6 7 8
          */
-        // ...
+        Set<Integer> tempSquare = new TreeSet<>();
+        Set<Integer> tempSquare2 = new TreeSet<>();
+        Set<Integer> tempSquare3 = new TreeSet<>();
+        Set<Integer> tempSquare4 = new TreeSet<>();
+        Set<Integer> tempSquare5 = new TreeSet<>();
+        Set<Integer> tempSquare6 = new TreeSet<>();
+        Set<Integer> tempSquare7 = new TreeSet<>();
+        Set<Integer> tempSquare8 = new TreeSet<>();
+        Set<Integer> tempSquare9 = new TreeSet<>();
+        for(int i = 0; i < M; i++)
+        {
+            for(int j = 0; j < M; j++)
+            {
+                tempSquare.add(this.grid[i][j]);
+                tempSquare2.add(this.grid[i+3][j]);
+                tempSquare3.add(this.grid[i+6][j]);
+                tempSquare4.add(this.grid[i][j+3]);
+                tempSquare5.add(this.grid[i+3][j+3]);
+                tempSquare6.add(this.grid[i+6][j+3]);
+                tempSquare7.add(this.grid[i][j+6]);
+                tempSquare8.add(this.grid[i+3][j+6]);
+                tempSquare9.add(this.grid[i+6][j+6]);
+            }
+        }
+        this.squares.add(tempSquare);
+        this.squares.add(tempSquare2);
+        this.squares.add(tempSquare3);
+        this.squares.add(tempSquare4);
+        this.squares.add(tempSquare5);
+        this.squares.add(tempSquare6);
+        this.squares.add(tempSquare7);
+        this.squares.add(tempSquare8);
+        this.squares.add(tempSquare9);
 
         // create a hash set for [1..9] (this.nums)
         this.nums = new HashSet<>();
