@@ -149,7 +149,21 @@ public class SudokuSolver {
         Set<Integer> possibleNums = new HashSet<Integer>();
         possibleNums.addAll(this.nums);
         
-        // ...
+        if(possibleNums.contains(this.rows.get(nextRow)))
+        {
+            possibleNums.removeAll(this.rows.get(nextRow));
+        }
+        if(possibleNums.contains(this.cols.get(nextCol)))
+        {
+            possibleNums.removeAll(this.cols.get(nextCol));
+        }
+
+        int squareRow = 0;
+        int squareCol = 0;
+        // Square nextRow/M nextCol/M
+        // Square is set up so it goes down the columns
+        // square row index 2 6,7,8 
+        this.squares.
 
         // if there are no possible numbers, we cannot solve the board in its current state
         if (possibleNums.isEmpty()) {
