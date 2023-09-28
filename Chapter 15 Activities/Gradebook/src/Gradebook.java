@@ -1,5 +1,5 @@
-import java.util.Scanner;
-. . .
+import java.util.*;
+
 /**
  * A program to add, remove, modify or print
  * student names and grades.
@@ -10,8 +10,8 @@ public class Gradebook
     {
         Scanner in = new Scanner(System.in);
 
-        . . .
-
+        Map<String, String> students = new HashMap<>();
+        
         boolean done = false;
         while(!done)
         {
@@ -22,17 +22,34 @@ public class Gradebook
                 done = true;
             } else if (input.equals("A"))
             {
-                . . .
+                System.out.print("What is the name: ");
+                String name = in.nextLine();
+                System.out.print("\nWhat is the grade: ");
+                String grade = in.nextLine();
+                students.put(name, grade);
 
             } else if (input.equals("R"))
             {
-                . . .
+                System.out.print("What is the name: ");
+                String name = in.nextLine();
+                students.remove(name);
             } else if (input.equals("M"))
             {
-                . . .
+                System.out.print("What is the name: ");
+                String name = in.nextLine();
+                System.out.print("\nWhat is the new grade: ");
+                String grade = in.nextLine();
+                students.put(name,grade);
             } else if (input.equalsIgnoreCase("P"))
             {
-                . . .
+                Set<String> keys = students.keySet();
+                ArrayList<String> arrayList = new ArrayList<>(keys);
+                Collections.sort(arrayList);
+
+                for(String name : arrayList)
+                {
+                    System.out.println(name +": "+gradeBook.get(name));
+                }
             } else
             {
                 done = true;
