@@ -72,7 +72,7 @@ public class SudokuSolver {
             {
                 for(int k = i / M * M; k < i / M * M + M; k++)
                 {
-                    square.add(grid[j][k])
+                    square.add(grid[j][k]);
                 }
             }
             squares.add(square);
