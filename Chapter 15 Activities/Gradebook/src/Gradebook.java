@@ -23,22 +23,22 @@ public class Gradebook
             } else if (input.equals("A"))
             {
                 System.out.print("What is the name: ");
-                String name = in.nextLine();
-                System.out.print("\nWhat is the grade: ");
-                String grade = in.nextLine();
+                String name = in.next();
+                System.out.print("What is the grade: ");
+                String grade = in.next();
                 students.put(name, grade);
 
             } else if (input.equals("R"))
             {
                 System.out.print("What is the name: ");
-                String name = in.nextLine();
+                String name = in.next();
                 students.remove(name);
             } else if (input.equals("M"))
             {
                 System.out.print("What is the name: ");
-                String name = in.nextLine();
-                System.out.print("\nWhat is the new grade: ");
-                String grade = in.nextLine();
+                String name = in.next();
+                System.out.print("What is the new grade: ");
+                String grade = in.next();
                 students.put(name,grade);
             } else if (input.equalsIgnoreCase("P"))
             {
@@ -48,7 +48,7 @@ public class Gradebook
 
                 for(String name : arrayList)
                 {
-                    System.out.println(name +": "+gradeBook.get(name));
+                    System.out.println(name +": "+students.get(name));
                 }
             } else
             {
