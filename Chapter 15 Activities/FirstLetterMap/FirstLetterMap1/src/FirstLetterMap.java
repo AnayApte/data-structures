@@ -38,6 +38,9 @@ public class FirstLetterMap
             // a: [a, able, aardvark]
 
             for(Character key : firsts.keySet()
+            {
+                System.out.println(key + ": " + firsts.get(key));
+            }    
             
         } catch (FileNotFoundException e)
         {
