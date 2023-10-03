@@ -12,33 +12,27 @@ public class FirstLetterMap
 {
     public static void main(String[] args)
     {
-        String filename = "src/test1.txt";
+        String filename = "Chapter 15 Activities\\FirstLetterMap\\FirstLetterMap2\\src\\test1.txt";
 
         try (Scanner in = new Scanner(new File(filename)))
         {
 
             // Create your map here
-            Map<Character,Set<String>> firsts = new TreeMap<>();
+            Map<Character, String> firsts = new TreeMap<>();
 
             while (in.hasNext())
             {
                 String word = clean(in.next());
                 Character c = word.charAt(0);
-                Set<String> words = firsts.get(c);
                 
                 // Update the map here
                 // Modify Worked Example 15.1
-                 if (words == null)
-                 {
-                    words = new TreeSet<>();
-                    words.add(word);
-                    firstLetters.put(c, words);
-                }
-                else 
+                if(firsts.containsKey(c))
                 {
-                    words.add(word);
-                    firstLetters.put(c, words);
+                    firsts.put(c, firsts.get(c)+", "+word);
                 }
+                else
+                    firsts.put(c, word);
             }
 
             // Print the map here in this form

@@ -12,24 +12,22 @@ public class FirstLetterMap
 {
     public static void main(String[] args)
     {
-        String filename = "src/test1.txt";
+        String filename = "Chapter 15 Activities\\FirstLetterMap\\FirstLetterMap1\\src\\test1.txt";
 
         try (Scanner in = new Scanner(new File(filename)))
         {
 
             // Create your map here
-            Map<Character,Set<String>> firsts = new TreeMap<>();
+            Map<Character, String> firsts = new TreeMap<>();
 
             while (in.hasNext())
             {
                 String word = clean(in.next());
                 Character c = word.charAt(0);
-                Set<String> words = new TreeSet<>();
 
                 // Update the map here
-                words.add(word);
                 // Use the Java 8 merge method
-                firsts.merge(c,new TreeSet<>(), (oldValue, newValue) -> newValue);
+                firsts.merge(c, word, (oldValue, newValue) -> oldValue+", "+newValue);
                 
 
             }
@@ -37,7 +35,7 @@ public class FirstLetterMap
             // Print the map here in this form
             // a: [a, able, aardvark]
 
-            for(Character key : firsts.keySet()
+            for(Character key : firsts.keySet())
             {
                 System.out.println(key + ": " + firsts.get(key));
             }    
