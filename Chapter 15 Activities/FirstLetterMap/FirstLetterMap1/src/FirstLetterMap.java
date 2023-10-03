@@ -18,22 +18,27 @@ public class FirstLetterMap
         {
 
             // Create your map here
-            ...
+            Map<Character,Set<String>> firsts = new TreeMap<>();
 
             while (in.hasNext())
             {
                 String word = clean(in.next());
                 Character c = word.charAt(0);
+                Set<String> words = new TreeSet<>();
 
                 // Update the map here
+                words.add(word);
                 // Use the Java 8 merge method
-                . . .
+                firsts.merge(c,new TreeSet<>(), (oldValue, newValue) -> newValue);
+                
 
             }
 
             // Print the map here in this form
             // a: [a, able, aardvark]
-            . . .
+
+            for(Character key : firsts.keySet()
+            
         } catch (FileNotFoundException e)
         {
             System.out.println("Cannot open: " + filename);
