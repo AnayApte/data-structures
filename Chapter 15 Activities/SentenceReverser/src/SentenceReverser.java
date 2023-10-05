@@ -15,14 +15,17 @@ public class SentenceReverser
     public static String reverse(String sentence)
     {
     	Scanner scanner = new Scanner(sentence);
-    	
-        // Complete this method. Use a Stack.
-        ...
 
-
-
-
-
-
+        Stack <String> words = new Stack<>();
+        
+        while(scanner.hasNext())
+        {
+            while(!scanner.next().contains("."))
+            {
+                
+            }
+        }
+        
+        return;
     }
 }
