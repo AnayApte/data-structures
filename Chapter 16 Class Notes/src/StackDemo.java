@@ -2,7 +2,6 @@ public class StackDemo
 {
     public static void main(String[] args)
     {
-        /*
         LinkedListStack stack = new LinkedListStack();
 
         stack.push("Tom");
@@ -15,6 +14,5 @@ public class StackDemo
         }
 
         System.out.println("Expected: Harry Diana Tom");
-        */
     }
 }
