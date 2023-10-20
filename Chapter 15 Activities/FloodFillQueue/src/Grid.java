@@ -10,28 +10,33 @@ public class Grid
     */
     public void floodfill(int row, int column)
     {
-        int count = 1;
         Pair first = new Pair(row, column);
+        int count = 1;
         pairs.push(first);
-
-        while (pairs.size() > 0){
-            Pair p = pairs.pop();
-            if (pixels[p.getRow()][p.getColumn()] == 0){
-                pixels[p.getRow()][p.getColumn()] = count;
+        while(pairs.size()>0)
+        {
+            Pair pair = pairs.pop();
+            if(pixels[pair.getRow()][pair.getColumn()] == 0)
+            {
+                pixels[pair.getRow()][pair.getColumn()] = count;
                 count++;
             }
 
-            if (p.getRow() + 1 < 10 && pixels[p.getRow() + 1][p.getColumn()] == 0){
-                pairs.push(new Pair(p.getRow() + 1, p.getColumn()));
+            if(pair.getRow()-1 >= 0 && pair.getRow()-1 < SIZE && pair.getColumn() >= 0 && pair.getColumn() < SIZE && pixels[pair.getRow()-1][pair.getColumn()] == 0)
+            {
+                pairs.push(new Pair(pair.getRow()-1,pair.getColumn()));
             }
-            if (p.getColumn() + 1 < 10 && pixels[p.getRow()][p.getColumn() + 1] == 0){
-                pairs.push(new Pair(p.getRow(), p.getColumn() + 1));
+            if(pair.getRow() >= 0 && pair.getRow() < SIZE && pair.getColumn() + 1 >= 0 && pair.getColumn() + 1 < SIZE && pixels[pair.getRow()][pair.getColumn()+1] == 0)
+            {
+                pairs.push(new Pair(pair.getRow(),pair.getColumn()+1));
             }
-            if (p.getRow() - 1 > -1 && pixels[p.getRow() - 1][p.getColumn()] == 0){
-                pairs.push(new Pair(p.getRow() - 1, p.getColumn()));
+            if(pair.getRow() + 1 >= 0 && pair.getRow() + 1 < SIZE && pair.getColumn() >= 0 && pair.getColumn() < SIZE && pixels[pair.getRow()+1][pair.getColumn()] == 0)
+            {
+                pairs.push(new Pair(pair.getRow() + 1,pair.getColumn()));
             }
-            if (p.getColumn() - 1 > -1 && pixels[p.getRow()][p.getColumn() - 1] == 0){
-                pairs.push(new Pair(p.getRow(), p.getColumn() - 1));
+            if(pair.getRow() >= 0 && pair.getRow() < SIZE && pair.getColumn() - 1 >= 0 && pair.getColumn() - 1 < SIZE && pixels[pair.getRow()][pair.getColumn()-1] == 0)
+            {
+                pairs.push(new Pair(pair.getRow(),pair.getColumn()-1));
             }
         }
     }
