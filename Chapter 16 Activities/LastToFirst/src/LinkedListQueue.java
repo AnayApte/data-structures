@@ -24,20 +24,22 @@ public class LinkedListQueue
     */
     public void lastToFirst()
     {
-        if(head == null)
+        if(this.head == null)
         {
             throw new NoSuchElementException();
         }
 
-        this.tail.next = head;
-        this.head = this.head.next;
+        this.tail.next = this.head;
         Node current = this.head;
 
-        while(current != tail)
+        while(current.next != this.tail)
         {
-            this.add(this.remove());
             current = current.next;
         }
+        current.next = null;
+
+        this.head = this.tail;
+        this.tail = current;
     }
 
     /**
