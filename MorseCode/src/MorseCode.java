@@ -71,9 +71,7 @@ public class MorseCode
      */
     private static void addSymbol(char letter, String code)
     {
-        /*
-            !!! INSERT CODE HERE
-        */
+        TreeNode symbol = new TreeNode(letter, )
     }
 
     /**
