@@ -71,7 +71,8 @@ public class MorseCode
      */
     private static void addSymbol(char letter, String code)
     {
-        TreeNode symbol = new TreeNode(letter, )
+        codeMap.put(letter, code);
+        treeInsert(letter, code);
     }
 
     /**
@@ -83,9 +84,10 @@ public class MorseCode
      */
     private static void treeInsert(char letter, String code)
     {
-        /*
-            !!! INSERT CODE HERE
-        */
+        for(int i = 0; i < code.length(); i++)
+        {
+            String character = code.substring(i,i+1);
+        }
     }
 
     /**
