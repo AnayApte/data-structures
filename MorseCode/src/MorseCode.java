@@ -84,10 +84,32 @@ public class MorseCode
      */
     private static void treeInsert(char letter, String code)
     {
+        TreeNode root = decodeTree;
+        TreeNode child;
         for(int i = 0; i < code.length(); i++)
         {
-            String character = code.substring(i,i+1);
+            String sequence = code.substring(i,i+1);
+            if(sequence.equals("."))
+            {
+                if(root.getLeft() == null)
+                {
+                    root.setLeft(new TreeNode(' '));
+                }
+                child = root.getLeft();
+            }
+            else
+            {
+                if(root.getRight() == null)
+                {
+                    root.setRight(new TreeNode(' '));
+                }
+                child = root.getRight();
+            }
+            TreeNode temp = child;
+            root = temp;
+            child = null; 
         }
+        root.setValue(code);
     }
 
     /**
@@ -99,11 +121,18 @@ public class MorseCode
     public static String encode(String text)
     {
         StringBuffer morse = new StringBuffer(400);
-
-        /*
-            !!! INSERT CODE HERE
-        */
-
+        for(int i = 0; i < text.length(); i++)
+        {
+            if(text.charAt(i) == ' ')
+            {
+                morse.append("  ");
+            }
+            else
+            {
+                String toAppend = codeMap.get(text.charAt(i)) + " ";
+                morse.append(toAppend);
+            }
+        }
         return morse.toString();
     }
 
@@ -116,11 +145,7 @@ public class MorseCode
     public static String decode(String morse)
     {
         StringBuffer text = new StringBuffer(100);
-
-        /*
-            !!! INSERT CODE HERE
-        */
-
+        
         return text.toString();
     }
 }
