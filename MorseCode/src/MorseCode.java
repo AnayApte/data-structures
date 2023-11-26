@@ -71,8 +71,8 @@ public class MorseCode
      */
     private static void addSymbol(char letter, String code)
     {
-        codeMap.put(letter, code);
-        treeInsert(letter, code);
+        codeMap.put(letter, code); // Calls the codeMap TreeMap and assigns the code value for each letter.
+        treeInsert(letter, code); // Calls on the treeInsert method.
     }
 
     /**
@@ -84,22 +84,22 @@ public class MorseCode
      */
     private static void treeInsert(char letter, String code)
     {
-        TreeNode root = decodeTree;
-        TreeNode child;
+        TreeNode root = decodeTree; // Starts the root at decodeTree. Changes with each subtree.
+        TreeNode child; // Child node for subtrees.
         for(int i = 0; i < code.length(); i++)
         {
-            String sequence = code.substring(i,i+1);
-            if(sequence.equals("."))
+            String sequence = code.substring(i,i+1); // Takes each individual character.
+            if(sequence.equals(".")) // If the character equals a dot, we go left 
             {
-                if(root.getLeft() == null)
+                if(root.getLeft() == null) // Checks if there is a child on the left branch, if not we create one.
                 {
                     root.setLeft(new TreeNode(' '));
                 }
                 child = root.getLeft();
             }
-            else
+            else // If the character equals a dash, we go right.
             {
-                if(root.getRight() == null)
+                if(root.getRight() == null) // Checks if there is a child on the right branch, if not we create one.
                 {
                     root.setRight(new TreeNode(' '));
                 }
@@ -109,7 +109,7 @@ public class MorseCode
             root = temp;
             child = null; 
         }
-        root.setValue(code);
+        root.setValue(letter); // Quick swap ran above to set the root as the value of the letter (so we can decode later).
     }
 
     /**
@@ -121,15 +121,16 @@ public class MorseCode
     public static String encode(String text)
     {
         StringBuffer morse = new StringBuffer(400);
+        text = text.toUpperCase(); // MUST CONVERT TO UPPER CASE SINCE OUR MAP HAS UPPER CASE CHARS.
         for(int i = 0; i < text.length(); i++)
         {
-            if(text.charAt(i) == ' ')
+            if(text.charAt(i) == ' ') // If we have a space in our sequence, we only append one space to the morse code. This is because each individual letter also adds one.
             {
-                morse.append("  ");
+                morse.append(" ");
             }
             else
             {
-                String toAppend = codeMap.get(text.charAt(i)) + " ";
+                String toAppend = codeMap.get(text.charAt(i)) + " "; // Uses map to get code for each letter plus space.
                 morse.append(toAppend);
             }
         }
@@ -145,7 +146,39 @@ public class MorseCode
     public static String decode(String morse)
     {
         StringBuffer text = new StringBuffer(100);
-        
+        int index = 0;
+        TreeNode current = decodeTree;
+        while(index < morse.length())
+        {
+            if(morse.charAt(index) == ' ' && index != morse.length() - 1) // Must have the second condition since we go out of bounds.
+            {
+                text.append(current.getValue());
+                current = decodeTree; // resets tree so we can go through new set of values for morse code decoding.
+                index++;
+                if(morse.charAt(index) == ' ') // checks if there is a series of double spaces. If there are, we append a space, if not we simply remove an index so we don't double add.
+                {
+                    text.append(" ");
+                }
+                else
+                {
+                    index--; 
+                }
+            }
+            else if(morse.charAt(index) == ' ' && index == morse.length()-1) // Case if it's going to go out of bounds.
+            {
+                text.append(current.getValue());
+                current = decodeTree;
+            }
+            else if(morse.charAt(index) == '.') // Case if we have a dot.
+            {
+                current = current.getLeft();
+            }
+            else if(morse.charAt(index) == '-') // Case if we have a dash.
+            {
+                current = current.getRight();
+            }
+            index++;
+        }
         return text.toString();
     }
 }
